@@ -16,11 +16,17 @@ extension GroupListViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Select Deck"
         // initializeView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let groupCount = GroupDao().findAll().count
+        
+        if (Option.DEBUG) {
+            print("viewWillAppear() ### groupCount = \(groupCount) vs groups.count = \(groups.count)")
+        }
+
         if (groups.count != groupCount) {
             initializeData()
         }
@@ -33,6 +39,9 @@ extension GroupListViewController {
 extension GroupListViewController {
     func initializeData() {
         groups = Array(GroupDao().findAll())
+        for group in groups {
+            print(group.name)
+        }
     }
 }
 
@@ -44,12 +53,17 @@ extension GroupListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return (tableView.dequeueReusableCell(
             withIdentifier: cellIdentifer,
-            for: indexPath) as! GroupCell).alsoRet { $0.setGroup(groups[indexPath.row]) }
+            for: indexPath) as! GroupCell).alsoRet { $0.setGroup(getItem(indexPath)) }
     }
     
     // getCount
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups.count
+    }
+    
+    // getItem
+    func getItem(_ indexPath: IndexPath) -> Group {
+        return groups[indexPath.row]
     }
 }
 
@@ -58,24 +72,32 @@ extension GroupListViewController: UITableViewDataSource {
  * --------------------------------------------------------------- */
 extension GroupListViewController: UITableViewDelegate {
 
+    // Turn on swipe delete mode
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
+    // Selected delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if (editingStyle == UITableViewCellEditingStyle.delete) {
-//            // delete record
-//            let expense = expenses[indexPath.row]
-//            ExpenseDao().delete(expense: expense)
-//            
-//            // remove row item
-//            expenses.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            print(indexPath.row)
-//            
-//            // initialize view
-//            initializeView()
-//        }
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // delete record
+            let group = getItem(indexPath)
+            // TODO
+//            GroupDao().delete(group)
+            
+            // remove row item
+            groups.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            if (Option.DEBUG) {
+                print("Deleted \(indexPath.row): [\(group.id)]\(group.name)")
+            }
+        }
+    }
+
+    // Selected Row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let group = groups[indexPath.row]
+        print(group.name)
     }
 }
 

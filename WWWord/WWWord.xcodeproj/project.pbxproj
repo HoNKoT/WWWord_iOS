@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F52AECEA1F33BDE000FD0FFA /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC651F2A8E60002A166F /* Realm.framework */; };
+		F52AECEB1F33BDE000FD0FFA /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC651F2A8E60002A166F /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F52AECED1F33BDE400FD0FFA /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC671F2A8E71002A166F /* RealmSwift.framework */; };
+		F52AECEE1F33BDE400FD0FFA /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC671F2A8E71002A166F /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F52AECEF1F33BDE700FD0FFA /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC691F2A8E88002A166F /* SwiftDate.framework */; };
+		F52AECF01F33BDE700FD0FFA /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC691F2A8E88002A166F /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F53E318D1F32792D008EEBFD /* GroupDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E318C1F32792D008EEBFD /* GroupDao.swift */; };
 		F53E318F1F3283FC008EEBFD /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E318E1F3283FC008EEBFD /* Option.swift */; };
 		F53E31911F328724008EEBFD /* WordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E31901F328724008EEBFD /* WordDao.swift */; };
@@ -22,9 +28,6 @@
 		F5E3BC5E1F295B11002A166F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3BC5D1F295B11002A166F /* Group.swift */; };
 		F5E3BC611F2A8C21002A166F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3BC601F2A8C21002A166F /* Word.swift */; };
 		F5E3BC631F2A8C43002A166F /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3BC621F2A8C43002A166F /* Preference.swift */; };
-		F5E3BC681F2A8E71002A166F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC671F2A8E71002A166F /* RealmSwift.framework */; };
-		F5E3BC6A1F2A8E88002A166F /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC691F2A8E88002A166F /* SwiftDate.framework */; };
-		F5E3BC6C1F2A9033002A166F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC651F2A8E60002A166F /* Realm.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,22 @@
 			remoteInfo = WWWord;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F52AECEC1F33BDE100FD0FFA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F52AECEE1F33BDE400FD0FFA /* RealmSwift.framework in Embed Frameworks */,
+				F52AECF01F33BDE700FD0FFA /* SwiftDate.framework in Embed Frameworks */,
+				F52AECEB1F33BDE000FD0FFA /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F53E318C1F32792D008EEBFD /* GroupDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDao.swift; sourceTree = "<group>"; };
@@ -76,9 +95,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5E3BC6C1F2A9033002A166F /* Realm.framework in Frameworks */,
-				F5E3BC681F2A8E71002A166F /* RealmSwift.framework in Frameworks */,
-				F5E3BC6A1F2A8E88002A166F /* SwiftDate.framework in Frameworks */,
+				F52AECED1F33BDE400FD0FFA /* RealmSwift.framework in Frameworks */,
+				F52AECEF1F33BDE700FD0FFA /* SwiftDate.framework in Frameworks */,
+				F52AECEA1F33BDE000FD0FFA /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +230,7 @@
 				F5E3BC261F29467F002A166F /* Sources */,
 				F5E3BC271F29467F002A166F /* Frameworks */,
 				F5E3BC281F29467F002A166F /* Resources */,
+				F52AECEC1F33BDE100FD0FFA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

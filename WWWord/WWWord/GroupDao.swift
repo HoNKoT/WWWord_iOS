@@ -8,6 +8,10 @@ class GroupDao {
     
     init() {
         if (Option.DEBUG) {
+            if (findAll().count > 0) {
+                return
+            }
+            
             let wordDao = WordDao()
             
             // Insert some Test Groups
@@ -19,6 +23,8 @@ class GroupDao {
                         // ...
                     }
                 }
+                
+                print("initalize \(group.id) - \(group.name) which has 200 items(words)")
                 
                 for j in 1...200 {
                     // Insert some Test Words

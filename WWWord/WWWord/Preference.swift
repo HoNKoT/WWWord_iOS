@@ -10,9 +10,4 @@ class Preference: Object {
     dynamic var popup = true
     dynamic var vib = true
     dynamic var ring = true
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
 }
