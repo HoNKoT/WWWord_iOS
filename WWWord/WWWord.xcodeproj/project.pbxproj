@@ -13,6 +13,9 @@
 		F52AECEE1F33BDE400FD0FFA /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC671F2A8E71002A166F /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F52AECEF1F33BDE700FD0FFA /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC691F2A8E88002A166F /* SwiftDate.framework */; };
 		F52AECF01F33BDE700FD0FFA /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5E3BC691F2A8E88002A166F /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F52AECF41F33CCC100FD0FFA /* WordList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52AECF21F33CCC100FD0FFA /* WordList.storyboard */; };
+		F52AECF61F33CDD300FD0FFA /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52AECF51F33CDD300FD0FFA /* WordListViewController.swift */; };
+		F52AECF81F33D0A100FD0FFA /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52AECF71F33D0A100FD0FFA /* WordCell.swift */; };
 		F53E318D1F32792D008EEBFD /* GroupDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E318C1F32792D008EEBFD /* GroupDao.swift */; };
 		F53E318F1F3283FC008EEBFD /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E318E1F3283FC008EEBFD /* Option.swift */; };
 		F53E31911F328724008EEBFD /* WordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E31901F328724008EEBFD /* WordDao.swift */; };
@@ -64,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F52AECF31F33CCC100FD0FFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WordList.storyboard; sourceTree = "<group>"; };
+		F52AECF51F33CDD300FD0FFA /* WordListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
+		F52AECF71F33D0A100FD0FFA /* WordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		F53E318C1F32792D008EEBFD /* GroupDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDao.swift; sourceTree = "<group>"; };
 		F53E318E1F3283FC008EEBFD /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		F53E31901F328724008EEBFD /* WordDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDao.swift; sourceTree = "<group>"; };
@@ -118,6 +124,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F52AECF11F33CBE000FD0FFA /* WordList */ = {
+			isa = PBXGroup;
+			children = (
+				F52AECF21F33CCC100FD0FFA /* WordList.storyboard */,
+				F52AECF51F33CDD300FD0FFA /* WordListViewController.swift */,
+				F52AECF71F33D0A100FD0FFA /* WordCell.swift */,
+			);
+			name = WordList;
+			sourceTree = "<group>";
+		};
 		F5E3BC211F29467F002A166F = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +161,8 @@
 				F5E3BC6B1F2A8F6C002A166F /* Utils */,
 				F5E3BC5C1F295AFE002A166F /* Model */,
 				F5E3BC5F1F2A8C04002A166F /* Dao */,
-				F5E3BC5B1F295AE3002A166F /* GroupCardList */,
+				F5E3BC5B1F295AE3002A166F /* GroupList */,
+				F52AECF11F33CBE000FD0FFA /* WordList */,
 				F5E3BC2D1F29467F002A166F /* AppDelegate.swift */,
 				F5E3BC341F29467F002A166F /* Assets.xcassets */,
 				F5E3BC361F29467F002A166F /* LaunchScreen.storyboard */,
@@ -172,14 +189,14 @@
 			path = WWWordUITests;
 			sourceTree = "<group>";
 		};
-		F5E3BC5B1F295AE3002A166F /* GroupCardList */ = {
+		F5E3BC5B1F295AE3002A166F /* GroupList */ = {
 			isa = PBXGroup;
 			children = (
 				F5E3BC311F29467F002A166F /* GroupList.storyboard */,
 				F5E3BC2F1F29467F002A166F /* GroupListViewController.swift */,
 				F53E31941F329A87008EEBFD /* GroupCell.swift */,
 			);
-			name = GroupCardList;
+			name = GroupList;
 			sourceTree = "<group>";
 		};
 		F5E3BC5C1F295AFE002A166F /* Model */ = {
@@ -330,6 +347,7 @@
 			files = (
 				F5E3BC381F29467F002A166F /* LaunchScreen.storyboard in Resources */,
 				F5E3BC351F29467F002A166F /* Assets.xcassets in Resources */,
+				F52AECF41F33CCC100FD0FFA /* WordList.storyboard in Resources */,
 				F5E3BC331F29467F002A166F /* GroupList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F52AECF61F33CDD300FD0FFA /* WordListViewController.swift in Sources */,
 				F53E31931F328CDD008EEBFD /* Extension.swift in Sources */,
 				F53E31911F328724008EEBFD /* WordDao.swift in Sources */,
 				F5E3BC631F2A8C43002A166F /* Preference.swift in Sources */,
@@ -363,6 +382,7 @@
 				F5E3BC611F2A8C21002A166F /* Word.swift in Sources */,
 				F53E31951F329A87008EEBFD /* GroupCell.swift in Sources */,
 				F5E3BC301F29467F002A166F /* GroupListViewController.swift in Sources */,
+				F52AECF81F33D0A100FD0FFA /* WordCell.swift in Sources */,
 				F53E318D1F32792D008EEBFD /* GroupDao.swift in Sources */,
 				F5E3BC2E1F29467F002A166F /* AppDelegate.swift in Sources */,
 			);
@@ -400,6 +420,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F52AECF21F33CCC100FD0FFA /* WordList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F52AECF31F33CCC100FD0FFA /* Base */,
+			);
+			name = WordList.storyboard;
+			sourceTree = "<group>";
+		};
 		F5E3BC311F29467F002A166F /* GroupList.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

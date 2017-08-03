@@ -1,33 +1,33 @@
 import UIKit
 
-class GroupListViewController: UIViewController {
-    
+class WordListViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
-    
-    internal var groups: Array<Group> = []
-    fileprivate let cellIdentifer = "GroupCell"
+
+    internal var group: Group?
+    internal var words: Array<Word> = []
+    fileprivate let cellIdentifer = "WordCell"
 
 }
 
 /**---------------------------------------------------------------
  * Override methods
  * --------------------------------------------------------------- */
-extension GroupListViewController {
-
+extension WordListViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Select Deck"
-        // initializeView()
+        self.title = group?.name ?? "Deck"
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let groupCount = GroupDao().findAll().count
+        let wordCount = WordDao().findAll(group!).count
         
         if (Option.DEBUG) {
-            print("viewWillAppear() ### groupCount = \(groupCount) vs groups.count = \(groups.count)")
+            print("viewWillAppear() ### wordCount = \(wordCount) vs words.count = \(words.count)")
         }
-
-        if (groups.count != groupCount) {
+        
+        if (words.count != wordCount) {
             initializeData()
         }
     }
@@ -36,74 +36,69 @@ extension GroupListViewController {
 /**---------------------------------------------------------------
  * Initializer
  * --------------------------------------------------------------- */
-extension GroupListViewController {
+extension WordListViewController {
     func initializeData() {
-        groups = Array(GroupDao().findAll())
-        for group in groups {
-            print(group.name)
-        }
+        words = Array(WordDao().findAll(group!))
+    }
+    
+    func initializeData(group: Group) {
+        self.group = group
     }
 }
 
 /**---------------------------------------------------------------
  * Implementation methods for UITableViewDataSource
  * --------------------------------------------------------------- */
-extension GroupListViewController: UITableViewDataSource {
+extension WordListViewController: UITableViewDataSource {
     // getView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return (tableView.dequeueReusableCell(
             withIdentifier: cellIdentifer,
-            for: indexPath) as! GroupCell).alsoRet { $0.setGroup(getItem(indexPath)) }
+            for: indexPath) as! WordCell
+            ).alsoRet { $0.setWord(getItem(indexPath)) }
     }
     
     // getCount
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return words.count
     }
     
     // getItem
-    func getItem(_ indexPath: IndexPath) -> Group {
-        return groups[indexPath.row]
+    func getItem(_ indexPath: IndexPath) -> Word {
+        return words[indexPath.row]
     }
 }
 
 /**---------------------------------------------------------------
  * Implementation methods for UITableViewDelegate
  * --------------------------------------------------------------- */
-extension GroupListViewController: UITableViewDelegate {
-
+extension WordListViewController: UITableViewDelegate {
+    
     // Turn on swipe delete mode
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     // Selected delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // delete record
-            let group = getItem(indexPath)
+            let word = getItem(indexPath)
             // TODO
-//            GroupDao().delete(group)
+            //            GroupDao().delete(group)
             
             // remove row item
-            groups.remove(at: indexPath.row)
+            words.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             if (Option.DEBUG) {
-                print("Deleted \(indexPath.row): [\(group.id)]\(group.name)")
+                print("Deleted \(indexPath.row): [\(word.id)] \(word.word) / \(word.meaning)")
             }
         }
     }
-
+    
     // Selected Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let group = groups[indexPath.row]
-        print(group.name)
-        
-        // move to next
-        let storyboard = UIStoryboard(name: "WordList", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "TopViewController") as! WordListViewController
-        vc.initializeData(group: group)
-        self.navigationController!.pushViewController(vc, animated: true)
+        let word = getItem(indexPath)
+        print(word.word)
     }
 }
-

@@ -6,7 +6,7 @@ class WordDao {
     
     private static let sortProperties = [SortDescriptor(keyPath: "listId")]
     
-    private func sortedByListId(_ results: Results<Group>) -> Results<Group> {
+    private func sortedByListId(_ results: Results<Word>) -> Results<Word> {
         return results.sorted(by: WordDao.sortProperties)
     }
     
@@ -14,11 +14,11 @@ class WordDao {
         return !findAll().filter("id = %@", word.id).isEmpty
     }
     
-    func findAll() -> Results<Group> {
-        return realm.objects(Group.self)
+    func findAll() -> Results<Word> {
+        return realm.objects(Word.self)
     }
     
-    func findAll(_ byGroup: Group) -> Results<Group> {
+    func findAll(_ byGroup: Group) -> Results<Word> {
         return findAll().filter("group.id = %@", byGroup.id)
     }
 
@@ -30,11 +30,11 @@ class WordDao {
         return (findAll(byGroup).sorted(byKeyPath: "listId").last?.id).map{ $0 + 1 } ?? 1
     }
     
-    func findAllOrderByListId() -> Results<Group> {
+    func findAllOrderByListId() -> Results<Word> {
         return sortedByListId(findAll())
     }
 
-    func findAllOrderByListId(byGroup: Group) -> Results<Group> {
+    func findAllOrderByListId(byGroup: Group) -> Results<Word> {
         return sortedByListId(findAll(byGroup))
     }
 

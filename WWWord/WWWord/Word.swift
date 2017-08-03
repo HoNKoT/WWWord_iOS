@@ -2,8 +2,8 @@ import Foundation
 import RealmSwift
 
 class Word: Object {
-    dynamic var id = 1
-    dynamic var listId = 1
+    dynamic var id = 0
+    dynamic var listId = 0
     dynamic var group: Group? = nil
     dynamic var word = ""
     dynamic var meaning = ""
