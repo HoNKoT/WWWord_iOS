@@ -11,6 +11,7 @@ class Word: Object {
     dynamic var detail = ""
     dynamic var memo = ""
     dynamic var audioFile = ""
+    dynamic var valid: Bool = true
     
     override static func primaryKey() -> String? {
         return "id"

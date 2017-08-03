@@ -15,7 +15,7 @@ class WordDao {
     }
     
     func findAll() -> Results<Word> {
-        return realm.objects(Word.self)
+        return realm.objects(Word.self).filter("valid = %@", true)
     }
     
     func findAll(_ byGroup: Group) -> Results<Word> {
@@ -85,6 +85,20 @@ class WordDao {
         } catch {
             return false
         }
+        return true
+    }
+    
+    func delete(_ word: Word) -> Bool {
+        print("delete start \(word.id) \(word.word) valid=\(!word.isInvalidated)")
+        do {
+            try realm.write {
+//                realm.delete(word)
+                word.valid = false
+            }
+        } catch {
+            return false
+        }
+        print("delete end \(word.id) \(word.word)")
         return true
     }
 }

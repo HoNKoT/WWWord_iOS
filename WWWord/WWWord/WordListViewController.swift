@@ -84,8 +84,9 @@ extension WordListViewController: UITableViewDelegate {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // delete record
             let word = getItem(indexPath)
-            // TODO
-            //            GroupDao().delete(group)
+            if WordDao().delete(word) {
+                // ...
+            }
             
             // remove row item
             words.remove(at: indexPath.row)

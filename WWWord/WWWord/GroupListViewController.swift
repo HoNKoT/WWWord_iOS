@@ -82,8 +82,9 @@ extension GroupListViewController: UITableViewDelegate {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             // delete record
             let group = getItem(indexPath)
-            // TODO
-//            GroupDao().delete(group)
+            if GroupDao().delete(group) {
+                // ...
+            }
             
             // remove row item
             groups.remove(at: indexPath.row)

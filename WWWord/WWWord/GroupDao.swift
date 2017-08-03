@@ -50,7 +50,7 @@ class GroupDao {
     }
     
     func findAll() -> Results<Group> {
-        return realm.objects(Group.self)
+        return realm.objects(Group.self).filter("valid = %@", true)
     }
     
     func generateId() -> Int {
@@ -97,6 +97,23 @@ class GroupDao {
         } catch {
             return false
         }
+        return true
+    }
+    
+    func delete(_ group: Group) -> Bool {
+        do {
+            try realm.write {
+//                realm.delete(Array(WordDao().findAll(group)))
+//                realm.delete(group)
+                for word in Array(WordDao().findAll(group)) {
+                    word.valid = false
+                }
+                group.valid = false
+            }
+        } catch {
+            return false
+        }
+        
         return true
     }
 }
