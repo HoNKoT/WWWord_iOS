@@ -65,7 +65,18 @@
                             <constraint firstItem="jFn-ms-h4E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rVh-0d-QAf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gfq-6e-tT4"/>
+                    <navigationItem key="navigationItem" id="gfq-6e-tT4">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="5U5-Fg-bCi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HXT-V5-ltj">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addMenuAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aiu-V4-dxi"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jFn-ms-h4E" id="iHx-7v-i4G"/>
                     </connections>

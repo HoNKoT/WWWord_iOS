@@ -3,6 +3,7 @@ import UIKit
 class GroupListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func addMenuAction(_ sender: UIButton) { addMenuAction() }
     
     internal var groups: Array<Group> = []
     fileprivate let cellIdentifer = "GroupCell"
@@ -42,6 +43,46 @@ extension GroupListViewController {
         for group in groups {
             print(group.name)
         }
+    }
+}
+
+/**---------------------------------------------------------------
+ * Add function
+ * --------------------------------------------------------------- */
+extension GroupListViewController {
+    func addMenuAction() {
+        //1. Create the alert controller.
+        let alert = UIAlertController(
+            title: "Create Deck",
+            message: nil,
+            preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter a title"
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            let text = textField?.text
+            
+            if (text != nil && !(text?.isEmpty ?? true)) {
+                // Force unwrapping because we know it exists.
+                let newGroup = Group().alsoRet { $0.name = text! }
+                if GroupDao().insert(newGroup) {
+                    // ...
+                    self.tableView.reloadData()
+                    self.groups.append(newGroup)
+                    self.tableView.beginUpdates()
+                    self.tableView.insertRows(at: [IndexPath(row: self.groups.count - 2, section: 0)], with: .automatic)
+                    self.tableView.endUpdates()
+                }
+            }
+        }))
+
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
