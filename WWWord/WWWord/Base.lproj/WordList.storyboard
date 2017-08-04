@@ -75,9 +75,29 @@
                             <constraint firstItem="Lt3-je-Evd" firstAttribute="top" secondItem="u0j-JJ-RC6" secondAttribute="bottom" id="nOb-ru-o2i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Rik-Pp-jKd"/>
+                    <navigationItem key="navigationItem" id="Rik-Pp-jKd">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Goh-rz-e1z">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="titleAction:" destination="F7o-EO-BoR" eventType="touchUpInside" id="Wvm-N0-cE6"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2q8-hn-hsD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xaB-BI-8dA">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addMenuAction:" destination="F7o-EO-BoR" eventType="touchUpInside" id="Br2-fs-cyK"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Lt3-je-Evd" id="0QT-K6-l6n"/>
+                        <outlet property="titleButton" destination="Goh-rz-e1z" id="TSN-I7-QzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GRM-rI-X12" userLabel="First Responder" sceneMemberID="firstResponder"/>

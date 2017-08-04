@@ -67,7 +67,7 @@ class GroupDao {
     
     func insert(_ group: Group) -> Bool {
         if isExisted(group) {
-            return update(group)
+            return update(group, name: group.name)
         }
 
         do {
@@ -84,12 +84,8 @@ class GroupDao {
         
         return true
     }
-    
-    func update(_ group: Group) -> Bool {
-        return update(group, name: group.name)
-    }
 
-    private func update(_ group: Group, name: String) -> Bool {
+    func update(_ group: Group, name: String) -> Bool {
         do {
             try realm.write {
                 group.name = name

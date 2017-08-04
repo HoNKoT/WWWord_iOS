@@ -3,6 +3,11 @@ import UIKit
 class WordListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func titleAction(_ sender: UIButton) { titleAction() }
+    @IBOutlet weak var titleButton: UIButton!
+    
+    @IBAction func addMenuAction(_ sender: UIButton) { addMenuAction() }
 
     internal var group: Group?
     internal var words: Array<Word> = []
@@ -17,7 +22,7 @@ extension WordListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = group?.name ?? "Deck"
+        self.titleButton.titleLabel?.text = group?.name ?? "Deck"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +48,77 @@ extension WordListViewController {
     
     func initializeData(group: Group) {
         self.group = group
+    }
+}
+
+/**---------------------------------------------------------------
+ * Add function
+ * --------------------------------------------------------------- */
+extension WordListViewController {
+    func titleAction() {
+        //1. Create the alert controller.
+        let alert = UIAlertController(
+            title: "Create Deck",
+            message: nil,
+            preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.text = self.group?.name ?? "Deck"
+            textField.placeholder = "Enter a title"
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            let text = textField?.text
+            
+            if (text != nil && !(text?.isEmpty ?? true)) {
+                // Force unwrapping because we know it exists.
+                if GroupDao().update(self.group!, name: text!) {
+                    self.titleButton.titleLabel?.text = text
+                }
+            }
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func addMenuAction() {
+        //1. Create the alert controller.
+        let alert = UIAlertController(
+            title: "Create Deck",
+            message: nil,
+            preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter a title"
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+//            let textField = alert?.textFields![0]
+//            let text = textField?.text
+//            
+//            if (text != nil && !(text?.isEmpty ?? true)) {
+//                // Force unwrapping because we know it exists.
+//                let newGroup = Group().alsoRet { $0.name = text! }
+//                if GroupDao().insert(newGroup) {
+//                    // ...
+////                    self.tableView.reloadData()
+////                    self.group.append(newGroup)
+////                    self.tableView.beginUpdates()
+////                    self.tableView.insertRows(at: [IndexPath(row: self.group.count - 2, section: 0)], with: .automatic)
+////                    self.tableView.endUpdates()
+//                }
+//            }
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
